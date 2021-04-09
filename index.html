@@ -153,14 +153,14 @@
 						<div class="price-slider w3_agileits_price_slider">
 							<h4 class="control-label">Cantidad</h4>
 							<span>Minimo $100</span>						
-							<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"><label><span class="glyphicon glyphicon-chevron-left"></span> 10 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>										   
+							<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"><label id="labelcantidad" ><span class="glyphicon glyphicon-chevron-left"></span> 10 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>										   
 							
 						</div>
 				 
 						<div class="price-slider w3_agileits_price_slider">
 							<h4 class="control-label">Duración</h4>
-							<span>Minimo 1 mes</span>
-							<div id="slider2" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 1.0989%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 1.0989%;"><label><span class="glyphicon glyphicon-chevron-left"></span> 5 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>
+							<span>Minimo 12 meses</span>
+							<div id="slider2" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 1.0989%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 1.0989%;"><label id="labelduracion" ><span class="glyphicon glyphicon-chevron-left"></span> 12 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>
 						</div>
 					  </div>
 				    </div>						 
@@ -180,7 +180,7 @@
 									</div>
 									<div class="agileits_w3layouts-col-sm-6">
 										<input type="hidden" id="amount" class="form-control" value="10">
-										<p class="price lead" id="amount-label">10</p>
+										<p class="price lead" id="amount-label">0</p>
 										<!--<span class="price">.00</span>-->
 									</div>
 									<div class="clear"> </div>
@@ -191,8 +191,8 @@
 										<span class="help-text">Escoge el plazo</span>
 									</div>
 									<div class="agileits_w3layouts-col-sm-6">
-										<input type="hidden" id="duration" class="form-control" value="5">
-										<p class="price lead" id="duration-label">5</p>
+										<input type="hidden" id="duration" class="form-control" value="1">
+										<p class="price lead" id="duration-label">0</p>
 										<span class="price">mes</span>
 									</div>
 									<div class="clear"> </div>
@@ -203,8 +203,8 @@
 										<span class="help-text">(Cantidad * Días)</span>
 									</div> 
 									<div class="agileits_w3layouts-col-sm-6">
-										<input type="hidden" id="total" class="form-control" value="$50">
-										<p class="price lead" id="total-label">$50</p>
+										<input type="hidden" id="total" class="form-control" value="$0">
+										<p class="price lead" id="total-label">$0</p>
 										<!--<span class="price">.00</span>-->
 									</div>
 									<div class="clear"> </div>
@@ -216,8 +216,8 @@
 										<span class="help-text">En tu cuenta</span>
 									</div>
 									<div class="agileits_w3layouts-col-sm-6">
-										<input type="hidden" id="interes" class="form-control" value="$70">
-										<p class="price lead" id="interes-label">$0</p>
+										<input type="hidden" id="interes" class="form-control" value="$0">
+										<p class="price lead" id="interes-label">$0</p> 
 										<!--<span class="price">.00</span>-->
 									</div>
 									<div class="clear"> </div>
@@ -225,7 +225,9 @@
 
 							</div>					 
 
-						</form>					
+						</form>		
+
+					 			
 					
 				    </div>	
 				</div>					
@@ -896,6 +898,15 @@
 				
             </div>
         </section>
+		
+		
+		<div id="circularMenu" class="main-btn-sm circular-menu-mini">
+			<a class="floating-btn onlyImgBtn js-scroll-trigger" data-toggle="tooltip" title="Listo para invertir!" href="#listoparainveritir"  >						 
+			     <img src="assets/img/mail.png" class="imgBtnlOnlyIcone">
+			</a>
+			 
+		</div>
+		
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -928,6 +939,8 @@
 		<script src="js/jquery-ui.min.js"></script>
 		<script>
 		  $(document).ready(function() {
+		      
+			  
 			  $("#slider").slider({
 				  range: "min",
 				  animate: true,
@@ -943,8 +956,8 @@
 			  $("#slider2").slider({
 				  range: "min",
 				  animate: true,
-				  value:1,
-				  min: 1,
+				  value:12,
+				  min: 12,
 				  max: 36,
 				  step: 1,
 				  slide: function(event, ui) {
@@ -955,10 +968,12 @@
 			  //Added, set initial value.
 			  $("#amount").val(0);
 			  $("#duration").val(0);
-			  $("#amount-label").text(0);
-			  $("#duration-label").text(0);
-			  $("#interes").val(0);
-			  update();
+			  $("#amount-label").text(10);
+			  $("#duration-label").text(12);
+			  //$("#interes").text(0);
+			  $("#interes-label").text(0);
+			  //update();
+			  loadExampleSimulator();
 		  });
 
 		  //changed. now with parameter
@@ -983,22 +998,32 @@
 			 $( "#duration" ).val($duration);
 			 $( "#duration-label" ).text($duration);
 			 $( "#total" ).val(conDecimal); /* $total */
-			 $( "#total-label" ).text(conDecimal); /* $total  interes */
-			 $( "#interes" ).val(conDecimal);
-			 $( "#interes-label" ).val(conDecimal);
+			 $( "#total-label" ).text(conDecimal); /* conDecimal $total  interes */
+			 //$( "#interes" ).val();
+			 $( "#interes-label" ).text(totalInteres);
 
 			 $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 			 $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 		  }
 		  
-		  function loadMonths(){
+		  function loadExampleSimulator(){
+		     var $cantidad =  $("#labelcantidad").text();
+			 var $duracion =  $("#labelduracion").text();
+			 var $totaldemo = ($cantidad * $duracion) * 1.07; 
+			 var todaldemocondecimal = $totaldemo.toFixed(2); //muestro solo dos decimales 
+			 console.log("$cantidad", $cantidad);
+			 console.log("$duracion", $duracion);
+			 console.log("$totaldemo", $totaldemo);
+			 $( "#total-label" ).text(todaldemocondecimal);
+		  }
 		  
+		  function loadMonths(){		  
 			for (var i=0; i < 7;++i){			
-			}
-		  
+			}		  
 		  }
 
 		</script>
+		 
 	
     </body>
 </html>
