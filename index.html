@@ -35,7 +35,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Quienes Somos</a></li>          
 						<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#simulator">Simulador</a></li> 
 						<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#exterior">Inversión en el extranjero</a></li> 	
-						 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#listoparainveritir">¿Listo para Inveritir?</a></li> 							
+						 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#listoparainveritir">¿Listo para Invertir?</a></li> 							
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contactenos</a></li>
                     </ul>
                 </div>
@@ -153,7 +153,7 @@
 						<div class="price-slider w3_agileits_price_slider">
 							<h4 class="control-label">Cantidad</h4>
 							<span>Minimo $100</span>						
-							<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"><label id="labelcantidad" ><span class="glyphicon glyphicon-chevron-left"></span> 10 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>										   
+							<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"><label id="labelcantidad" ><span class="glyphicon glyphicon-chevron-left"></span> 100 <span class="glyphicon glyphicon-chevron-right"></span></label></a></div>										   
 							
 						</div>
 				 
@@ -193,7 +193,7 @@
 									<div class="agileits_w3layouts-col-sm-6">
 										<input type="hidden" id="duration" class="form-control" value="1">
 										<p class="price lead" id="duration-label">0</p>
-										<span class="price">mes</span>
+										<span class="price">meses</span>
 									</div>
 									<div class="clear"> </div>
 								</div>
@@ -945,7 +945,7 @@
 				  range: "min",
 				  animate: true,
 				  value:1,
-				  min: 10,
+				  min: 100,
 				  max: 10000,
 				  step: 10,
 				  slide: function(event, ui) {
@@ -968,7 +968,7 @@
 			  //Added, set initial value.
 			  $("#amount").val(0);
 			  $("#duration").val(0);
-			  $("#amount-label").text(10);
+			  $("#amount-label").text(100);
 			  $("#duration-label").text(12);
 			  //$("#interes").text(0);
 			  $("#interes-label").text(0);
@@ -991,12 +991,14 @@
 			   
  
  			 var $interesmensual = ((  0.07 / 12) * $duration) * $amount; 
+
 			 var $interesmensualproporcional  = (((  0.07 / 12) * $duration) * $amount) / $duration;//mostrar el valor de interes mensual proporcional
 			 //console.log("$interesmensual", $interesmensual);		 
 			 //var $interesmensualdecimal =  $interesmensual.toFixed(2);
 			 var $interesmensualdecimal =  $interesmensualproporcional.toFixed(2);
 			 var $total = parseFloat($amount) + parseFloat($interesmensual); 
 			 //var $total = parseFloat($amount) + parseFloat($interesmensualproporcional); 
+
 			 var totalcondecimal = $total.toFixed(2); //muestro solo dos decimales 
 			 
 			 
@@ -1004,10 +1006,10 @@
 			 $( "#amount-label" ).text($amount);
 			 $( "#duration" ).val($duration);
 			 $( "#duration-label" ).text($duration);
-			 $( "#total" ).val(conDecimal); /* $total */
-			 $( "#total-label" ).text(conDecimal); /* conDecimal $total  interes */
+			 $( "#total" ).val(totalcondecimal); /* $total */
+			 $( "#total-label" ).text(totalcondecimal); /* conDecimal $total  interes */
 			 //$( "#interes" ).val();
-			 $( "#interes-label" ).text(totalInteres);
+			 $( "#interes-label" ).text($interesmensualdecimal);
 
 			 $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 			 $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
@@ -1018,6 +1020,7 @@
 			 var $duracion =  $("#labelduracion").text();
 			
 			 var $interesmensual = ((  0.07 / 12) * $duracion) * $cantidad; 
+
 			 var $interesmensualproporcional  = (((  0.07 / 12) * $duracion) * $cantidad) / $duracion;//mostrar el valor de interes mensual proporcional
 			 //var $interesmensualdecimal =  $interesmensual.toFixed(2);
 			 var $interesmensualdecimal =  $interesmensualproporcional.toFixed(2);
@@ -1028,8 +1031,8 @@
 			 var totaldemocondecimal = $totaldemo.toFixed(2); //muestro solo dos decimales 
 			 console.log("$cantidad", $cantidad);
 			 console.log("$duracion", $duracion);
-			 console.log("$totaldemo", $totaldemo);
-			 $( "#total-label" ).text(todaldemocondecimal);
+			 
+			 $( "#total-label" ).text(totaldemocondecimal);
 		  }
 		  
 		  function loadMonths(){		  
