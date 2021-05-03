@@ -988,11 +988,18 @@
 			 */
 
 			 /*$total = "$" + ($amount * $duration);*/
-			 $total = "$" + (   ($amount * $duration) * 1.07   );
-			 var numero = ($amount * $duration) * 1.07; 
-			 var conDecimal = numero.toFixed(2); //muestro solo dos decimales 
-			 var intereses = conDecimal / 12;
-			 var totalInteres = intereses.toFixed(2);
+			   
+ 
+ 			 var $interesmensual = ((  0.07 / 12) * $duration) * $amount; 
+			 var $interesmensualproporcional  = (((  0.07 / 12) * $duration) * $amount) / $duration;//mostrar el valor de interes mensual proporcional
+			 //console.log("$interesmensual", $interesmensual);		 
+			 //var $interesmensualdecimal =  $interesmensual.toFixed(2);
+			 var $interesmensualdecimal =  $interesmensualproporcional.toFixed(2);
+			 var $total = parseFloat($amount) + parseFloat($interesmensual); 
+			 //var $total = parseFloat($amount) + parseFloat($interesmensualproporcional); 
+			 var totalcondecimal = $total.toFixed(2); //muestro solo dos decimales 
+			 
+			 
 			 $( "#amount" ).val($amount);
 			 $( "#amount-label" ).text($amount);
 			 $( "#duration" ).val($duration);
@@ -1009,8 +1016,16 @@
 		  function loadExampleSimulator(){
 		     var $cantidad =  $("#labelcantidad").text();
 			 var $duracion =  $("#labelduracion").text();
-			 var $totaldemo = ($cantidad * $duracion) * 1.07; 
-			 var todaldemocondecimal = $totaldemo.toFixed(2); //muestro solo dos decimales 
+			
+			 var $interesmensual = ((  0.07 / 12) * $duracion) * $cantidad; 
+			 var $interesmensualproporcional  = (((  0.07 / 12) * $duracion) * $cantidad) / $duracion;//mostrar el valor de interes mensual proporcional
+			 //var $interesmensualdecimal =  $interesmensual.toFixed(2);
+			 var $interesmensualdecimal =  $interesmensualproporcional.toFixed(2);
+			 $( "#interes-label" ).text($interesmensualdecimal);
+			 
+			 var $totaldemo = parseFloat($cantidad) + parseFloat($interesmensual); 
+			 console.log("$totaldemo", $totaldemo);
+			 var totaldemocondecimal = $totaldemo.toFixed(2); //muestro solo dos decimales 
 			 console.log("$cantidad", $cantidad);
 			 console.log("$duracion", $duracion);
 			 console.log("$totaldemo", $totaldemo);
